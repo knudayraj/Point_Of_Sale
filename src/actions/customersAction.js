@@ -2,7 +2,7 @@ import axios from "axios"
 
 export const startAddingCustomers = (formData) => {
     return (dispatch) => {
-        axios.post('http://dct-billing-app.herokuapp.com/api/customers', formData, {
+        axios.post('//dct-billing-app.herokuapp.com/api/customers', formData, {
             headers : {
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             }
@@ -27,7 +27,7 @@ const addedCustomer = (cust) => {
 
 export const startGetCustomers = () => {
     return (dispatch) => [
-        axios.get('http://dct-billing-app.herokuapp.com/api/customers', {
+        axios.get('//dct-billing-app.herokuapp.com/api/customers', {
             headers : {
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             }
@@ -52,7 +52,7 @@ const getCustomer = (customers) => {
 
 export const startDeleteCustomer = (_id) => {
     return (dispatch) => [
-        axios.delete(`http://dct-billing-app.herokuapp.com/api/customers/${_id}`,  {
+        axios.delete(`//dct-billing-app.herokuapp.com/api/customers/${_id}`,  {
             headers : {
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             }
@@ -77,7 +77,7 @@ const deletedCust = (_id) => {
 
 export const startEditCustomer = (formData, _id ) => {
     return (dispatch) => {
-        axios.get(`http://dct-billing-app.herokuapp.com/api/customers/${_id}`, {
+        axios.get(`//dct-billing-app.herokuapp.com/api/customers/${_id}`, {
             headers : {
                 Authorization : `Bearer ${localStorage.getItem('token')}`
                 }
@@ -85,7 +85,7 @@ export const startEditCustomer = (formData, _id ) => {
             .then(response => {
                 // console.log('edit axios', response.data)
                 const data = response.data
-                    axios.put(`http://dct-billing-app.herokuapp.com/api/customers/${data._id}`, formData, {
+                    axios.put(`//dct-billing-app.herokuapp.com/api/customers/${data._id}`, formData, {
                     headers : {
                         Authorization : `Bearer ${localStorage.getItem('token')}`
                         }

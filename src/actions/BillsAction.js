@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const startAddingBills = (formData) => {
     return (dispatch) => {
-        axios.post('http://dct-billing-app.herokuapp.com/api/bills', formData, {
+        axios.post('//dct-billing-app.herokuapp.com/api/bills', formData, {
             headers : {
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             } 
@@ -28,7 +28,7 @@ const cartItem = (data) => {
 
 export const startRemoveBills = (_id) => {
     return (dispatch) => {
-        axios.delete(`http://dct-billing-app.herokuapp.com/api/bills/${_id}`, {
+        axios.delete(`//dct-billing-app.herokuapp.com/api/bills/${_id}`, {
             headers : {
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             }
@@ -55,7 +55,7 @@ const removedItem = (_id) => {
 
 export const startGetBills = () => {
     return (dispatch) => {
-        axios.get('http://dct-billing-app.herokuapp.com/api/bills/', {
+        axios.get('//dct-billing-app.herokuapp.com/api/bills/', {
             headers : {
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             }
@@ -80,7 +80,7 @@ const getBills = (data) => {
 
 export const startGetInvoice = () => {
     return (dispatch) => {
-        axios.get('http://dct-billing-app.herokuapp.com/api/bills',{
+        axios.get('//dct-billing-app.herokuapp.com/api/bills',{
             headers : {
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             }
@@ -107,7 +107,7 @@ const getInvoice = (invoice) => {
 
 export const startShowBill = (_id) => {
     return (dispatch) => {
-        axios.get(`http://dct-billing-app.herokuapp.com/api/bills/${_id}`, {
+        axios.get(`//dct-billing-app.herokuapp.com/api/bills/${_id}`, {
             headers : {
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             }
@@ -132,7 +132,7 @@ const showItem = (invoice) => {
 
 // export const startAddingBills = () => {
 //     return (dispatch) => {
-//         axios.get('http://dct-billing-app.herokuapp.com/api/bills',{
+//         axios.get('//dct-billing-app.herokuapp.com/api/bills',{
 //             headers : {
 //                 Authorization : `Bearer ${localStorage.getItem('token')}`
 //             }

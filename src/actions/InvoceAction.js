@@ -5,7 +5,7 @@ export const startGetInvoice = () => {
     const token = localStorage.getItem('token')
     return (dispatch) => {
         
-        axios.get('http://dct-billing-app.herokuapp.com/api/bills',{
+        axios.get('//dct-billing-app.herokuapp.com/api/bills',{
             headers : {
                 Authorization : `Bearer ${token}`
             }
@@ -32,7 +32,7 @@ const getInvoice = (invoice) => {
 export const startRemoveBills = (_id) => {
     const token = localStorage.getItem('token')
     return (dispatch) => [
-        axios.delete(`http://dct-billing-app.herokuapp.com/api/bills/${_id}`, {
+        axios.delete(`//dct-billing-app.herokuapp.com/api/bills/${_id}`, {
             headers : {
                 Authorization : `Bearer ${token}`
             }
@@ -58,7 +58,7 @@ const removedItem = (_id) => {
 
 export const startAddingBills = (formData) => {
     return (dispatch) => [
-        axios.post('http://dct-billing-app.herokuapp.com/api/bills', formData, {
+        axios.post('//dct-billing-app.herokuapp.com/api/bills', formData, {
             headers : {
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             } 
