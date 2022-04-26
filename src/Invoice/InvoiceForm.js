@@ -1,0 +1,139 @@
+import React from "react"
+
+const InvoicForm = (props) => {
+
+    const [value, onChange] = useState(new Date())
+    const [custSelect, setCustSelect] = useState('')
+    const [prodSelect, setProdSelect] = useState('')
+    const [cart, setCart] = useState([])
+    const [toggle, setToggle] = useState(false)
+    const [qty, setQty] = useState(1)
+
+    const customers = useSelector(state => {
+        return state.customers
+    })
+
+    const products = useSelector(state => {
+        return state.products
+    })
+
+    const handleCust = (e) => {
+        // console.log(e.target.value)
+        setCustSelect(e.target.value)
+    }
+
+    const handleProd = (e) => {
+        // console.log('handleProd', e.target.value)
+        setProdSelect(e.target.value)
+        // const _id = e.target.value
+    }
+
+    const removeItem = (prodSelect) => {
+        const result = cart.filter(e => {
+            return e.prodSelect !== prodSelect
+        })
+        setCart(result)
+    }
+
+
+    
+    let handleDecrement = (prodSelect) => {
+        // console.log('billsForm', prodSelect)
+        setQty(qty - 1)
+        let result = cart.filter(ele => {
+            if(ele.prodSelect === prodSelect){
+                return {...ele, quantity : ele.quantity = ele.quantity - 1}
+            } else {
+                return {...ele, quantity : ele.quantity}
+            }
+        })
+        setCart(result)
+        // setQuantity(quantity - 1)
+    }
+
+    const handleIncrement = (prodSelect) => { 
+        // console.log('billsForm', prodSelect)
+        let result = cart.map(ele => {
+            if(ele.prodSelect === prodSelect){
+                return {...ele, quantity : ele.quantity + 1}
+            } else {
+                return {...ele, quantity : ele.quantity}
+            }
+        })
+        
+        setCart(result)
+        setQty(qty + 1)
+    }
+
+    if(qty <= 1){
+        handleDecrement = () => setQty(1)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if(!cart.find((e) => e.prodSelect === prodSelect)) {
+            setCart([...cart, { prodSelect : prodSelect, quantity : 1}])
+        } else {
+            alert('Item is already in the cart. Increasing quantity')
+            handleIncrement(prodSelect)
+        }
+        setProdSelect('')
+    }
+
+    return (
+        <div>
+            <h4> Create New Bill </h4>
+            <form onSubmit={handleSubmit}>
+                <DatePicker onChange={onChange} value={value} /> < br/>
+                <select value={custSelect} onChange={handleCust}>
+                    <option value=""> select Customer </option>
+                    { customers.map(cust => {
+                        return <option value={cust._id}> { cust.name } </option>
+                    }) }
+                </select> <br />
+                <select value={prodSelect} onChange={handleProd} >
+                    <option> select product </option>
+                    { products.map(prod => {
+                        return <option value={prod._id}> { prod.name } </option>
+                    }) }
+                </select> <br />
+                <input type="submit" value="add to cart" />
+            </form>
+            <BillGen 
+                cart={cart}
+                custSelect={custSelect}
+                value={value}
+                setCart={setCart}
+                />
+                { products.map(e => {
+                    return <BillsList 
+                            key={e._id}
+                            {...e}
+                            custSelect={custSelect}
+                        />
+                        }
+                    ) }
+            { cart.length === 0 ? (
+                <div>
+                    <h4> Bills is Empty </h4>
+                    <p> Please add your first Bill </p>
+                </div>
+            ) : (
+                <div>
+            { cart.map((e,i) => {
+                return <BillCart 
+                    key={i}
+                    {...e}
+                    custSelect={custSelect}
+                    removeItem={removeItem}
+                    handleIncrement={handleIncrement}
+                    handleDecrement={handleDecrement}
+                />
+            }) }
+
+                </div>
+            ) }
+    )
+}
+
+export default InvoicForm
