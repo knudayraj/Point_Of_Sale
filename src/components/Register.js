@@ -5,7 +5,7 @@ import TextField from "./TextField";
 import * as Yup from 'yup'
 import { startRegisterUser } from '../actions/userAction'
 import { useDispatch } from 'react-redux'
-import registerImg from '../Images/registerImg.svg'
+// import registerImg from '../Images/registerImg.svg'
 import Button from '@material-ui/core/Button'
 import Swal from 'sweetalert2'
 import Login from "./Login";
@@ -72,7 +72,7 @@ const Register = (props) => {
     return (
         <div className="row">
             <div className="col ms-5 mt-5">
-                <img src={registerImg} width="800px" height="800px" />
+                {/* <img src={registerImg} width="800px" height="800px" /> */}
             </div>
             <div className="col mt-5" >
             <div className="container w-50 mt-5">

@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { startLoginUser } from "../actions/userAction"
 import Button from '@material-ui/core/Button'
-import loginImg from '../Images/loginImg.svg'
+// import loginImg from '../Images/loginImg.svg'
 import Swal from 'sweetalert2'
 import Register from './Register'
 import { Link, Route } from 'react-router-dom'
@@ -57,7 +57,7 @@ return (
     // <div className="container">
         <div className="row">
         <div className="col ms-5 mt-5">
-            <img src={loginImg} />
+            {/* <img src={loginImg} /> */}
         </div>
         <div className="col mt-5" >
             <div className="container w-50 mt-5">

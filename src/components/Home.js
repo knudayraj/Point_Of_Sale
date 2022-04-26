@@ -1,12 +1,12 @@
 import React from "react";
-import homeImg from '../Images/homeImg.svg'
+// import homeImg from '../Images/homeImg.svg'
 
 const Home = (props) => {
     return (
         <div className="container mt-5">
             <div className="row" >
             <div className="col mt-5 me-5">
-                <img src={homeImg} />
+                {/* <img src={homeImg} /> */}
             </div>
             <div className="col mt-5">
             {/* <div className="row" > */}
